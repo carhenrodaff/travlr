@@ -40,9 +40,32 @@ const tripsFindByCode = async (req, res) => {
             }
         });
     };
-
-
+const tripsAddTrip = async (req, res) => {
+    model
+    .create({
+        code: req.body.code,
+        name: req.body.name,
+        description: req.body.length,
+        start: req.body.start,
+        resort: req.body.resort,
+        perPerson: req.body.perPerson,
+        image: req.body.image,
+        description: req.body.description,
+    }, 
+    (err, trip) => {
+        if(err){
+            res
+                .status(400)
+                .json(err);
+        } else {
+            res
+                .status(201)
+                .json(trip);
+        }
+    });
+}
 module.exports = {
     tripsList,
-    tripsFindByCode
+    tripsFindByCode,
+    tripsAddTrip
 };
